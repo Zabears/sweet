@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes or No Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to top right, #FFB6C1, #FF69B4); /* Pink gradient background */
+            overflow: hidden; /* Prevents floating hearts and flowers from overflowing the page */
+        }
+        .gif-placeholder {
+            width: auto; /* Set to auto to fit the image width naturally */
+            height: auto; /* Set to auto to fit the image height naturally */
+            background-color: transparent; /* Make the background transparent */
+            margin-bottom: 30px; /* Space between the gif and main text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 5px rgba(255, 105, 180, 0.6); /* Soft pink glow */
+            letter-spacing: 2px;
+        }
+        .buttons {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #yesButton, #noButton {
+            background-color: #ff1493; /* Deep pink for buttons */
+            border: none;
+            padding: 20px 40px;
+            font-size: 24px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(255, 105, 180, 0.7);
+            transition: all 0.3s ease;
+        }
+        #yesButton:hover, #noButton:hover {
+            transform: scale(1.1);
+            background-color: #ff69b4; /* Light pink on hover */
+        }
+        #yesButton {
+            background-color: lightgreen;
+        }
+        #noButton {
+            background-color: red;
+        }
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            color: #ff1493;
+            animation: float 4s ease-in-out infinite;
+        }
+        .flower {
+            position: absolute;
+            font-size: 28px;
+            color: #FF69B4; /* Light pink color for flowers */
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.2); }
+            100% { transform: translateY(0) scale(1); }
+        }
+        .heart:nth-child(odd), .flower:nth-child(odd) {
+            animation-duration: 5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="gif-placeholder">
+        <!-- Replace with your initial GIF image -->
+        <img id="gifImage" src="hi-waving.gif" alt="Animated GIF" width="200" height="auto"> <!-- Adjust width and height -->
+    </div>
+    <h1 id="mainText">Would you like to be my VALENTINE?????</h1>
+    <div class="buttons">
+        <button id="yesButton" onclick="changeGifYes()">Yes</button>
+        <button id="noButton" onclick="changeGifNo()">No</button>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div class="heart" style="top: 10%; left: 20%;">❤️</div>
+    <div class="heart" style="top: 15%; left: 70%;">❤️</div>
+    <div class="heart" style="top: 20%; left: 25%;">💖</div>
+    <div class="heart" style="top: 60%; left: 70%;">💘</div>
+    <div class="heart" style="top: 60%; left: 10%;">💘</div>
+    <div class="heart" style="top: 40%; left: 80%;">💝</div>
+    
+    <!-- Floating Flowers -->
+    <div class="flower" style="top: 15%; left: 25%;">🌸</div>
+    <div class="flower" style="top: 25%; left: 55%;">💐</div>
+    <div class="flower" style="top: 50%; left: 80%;">🌷</div>
+    <div class="flower" style="top: 70%; left: 10%;">🌺</div>
+
+    <script>
+        function changeGifYes() {
+            let gifImage = document.getElementById("gifImage");
+            let mainText = document.getElementById("mainText");
+
+            gifImage.src = "bubu-dudu-rose-dudu-propose.gif"; // Replace with your own GIF for Yes response
+            gifImage.style.width = "300px";
+            gifImage.style.height = "auto";
+            mainText.textContent = "YEYYY IM SUCH LUCKY BOY"; // Change the main text
+
+            let yesButton = document.getElementById("yesButton");
+            let noButton = document.getElementById("noButton");
+            let currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+            let newSize = currentSize + 5;
+            
+            yesButton.style.fontSize = newSize + "px";
+            yesButton.style.padding = (parseInt(yesButton.style.padding) + 5) + "px";
+            
+            noButton.style.top = (newSize * 1.5) + "px";
+        }
+
+        function changeGifNo() {
+            let gifImage = document.getElementById("gifImage");
+            let mainText = document.getElementById("mainText");
+
+            gifImage.src = "bubu-bubu-dudu.gif"; // Replace with your own GIF for No response
+
+            // Array of random messages for the No button
+            let messages = [
+                "No please say yes i like u so much",
+                "Are you sure???",
+                "No you have to think about ittt",
+                "You misclicked",
+                "pindot the yes"
+            ];
+            let randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            mainText.textContent = randomMessage; // Change the main text randomly
+
+            let yesButton = document.getElementById("yesButton");
+            let noButton = document.getElementById("noButton");
+            let currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+            let newSize = currentSize + 20;
+            
+            yesButton.style.fontSize = newSize + "px";
+            yesButton.style.padding = (parseInt(yesButton.style.padding) + 5) + "px";
+            
+            noButton.style.top = (newSize * 2) + "px";
+        }
+    </script>
+</body>
+</html>
